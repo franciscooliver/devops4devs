@@ -1,15 +1,17 @@
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
-  name: kube-secrets
-type: Opaque
+  name: kube-config
+  labels:
+    app: postgres
+    tier: postgres
 data:
   DB_DATABASE: bmV3c2Ri
   DB_USERNAME: bmV3c3VzZXI=
-  DB_PASSWORD: bmV3c3B3ZA==
-  DB_HOST: postgcG9zdGdyZXM=res
-  AWS_ACCESS_KEY: QUtJQTRaSUpKMktUM1hRNFRJSlg=
-  AWS_ACCESS_SECRET: eHJjYmJLVlNyVDJHNjBnZmhiQmwrMUEvam02RUV5eENwNEw5OHF4YQ==
-  AWS_REGION: dXMtZWFzdC0x
-  AWS_S3_BUCKET_NAME: bmV3c2J1Y2tldGZpbGVz
-  STORAGE_TYPE: UzM=
+  DB_PASSWORD: "newspwd"
+  DB_HOST: postgres
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_ACCESS_SECRET: ${{ secrets.AWS_ACCESS_SECRET }}
+  AWS_REGION: us-east-1
+  AWS_S3_BUCKET_NAME: newsbucketfiles
+  STORAGE_TYPE: S3
