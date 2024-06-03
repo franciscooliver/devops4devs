@@ -55,7 +55,7 @@ spec:
         - name: web
           image: franciscoalves90/devops4devs:v3
           envFrom: 
-            - configMapRef:
+            - secretRef:
               name: kube-config
           resources:
             requests:
