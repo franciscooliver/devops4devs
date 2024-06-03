@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-config
+  labels:
+    app: postgres
+    tier: postgres
+data:
+  DB_DATABASE: "newsdb"
+  DB_USERNAME: "newsuser"
+  DB_PASSWORD: "newspwd"
+  DB_HOST: postgres
+  AWS_ACCESS_KEY: "AKIA4ZIJJ2KT3XQ4TIJX"
+  AWS_ACCESS_SECRET: "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"
+  AWS_REGION: "us-east-1"
+  AWS_S3_BUCKET_NAME: "newsbucketfiles"
+  STORAGE_TYPE: "S3"
