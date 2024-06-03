@@ -10,8 +10,8 @@ data:
   DB_USERNAME: bmV3c3VzZXI=
   DB_PASSWORD: "newspwd"
   DB_HOST: postgres
-  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-  AWS_ACCESS_SECRET: ${{ secrets.AWS_ACCESS_SECRET }}
+  AWS_ACCESS_K: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_ACCESS_S: ${{ secrets.AWS_ACCESS_SECRET }}
   AWS_REGION: us-east-1
   AWS_S3_BUCKET_NAME: newsbucketfiles
   STORAGE_TYPE: S3
