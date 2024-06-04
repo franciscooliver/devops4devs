@@ -28,6 +28,6 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: | 
-            franciscoalves90/devops4devs:${IMAGE_TAG}
+            franciscoalves90/devops4devs:${{ github.sha }}
             franciscoalves90/devops4devs:latest
    
