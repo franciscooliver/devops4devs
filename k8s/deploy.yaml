@@ -54,9 +54,6 @@ spec:
       containers:
         - name: web
           image: franciscoalves90/devops4devs:v3
-          envFrom: 
-            - configMapRef:
-              name: kube-config
           resources:
             requests:
               ephemeral-storage: "2Gi"
