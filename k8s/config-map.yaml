@@ -5,13 +5,5 @@ metadata:
   labels:
     app: postgres
     tier: postgres
-data:
-  DB_DATABASE: bmV3c2Ri
-  DB_USERNAME: bmV3c3VzZXI=
-  DB_PASSWORD: "newspwd"
-  DB_HOST: postgres
-  AWS_ACCESS_K: AKIA4ZIJJ2KT3XQ4TIJX
-  AWS_ACCESS_S: xrcbbKVSrT2G60gfhbBl+1A/jm6EEyxCp4L98qxa
-  AWS_REGION: us-east-1
-  AWS_S3_BUCKET_NAME: newsbucketfiles
-  STORAGE_TYPE: S3
+#
+  #variaveis
