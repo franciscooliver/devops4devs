@@ -1,3 +1,4 @@
+
 name: CI-CD
 
 on:
@@ -42,16 +43,15 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: deploy to cluster
-      uses: ghostzero/kubectl@v1
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: set image --record franciscoalves90/devops4devs container=franciscoalves90/devops4devs:${{ github.sha }}
+      uses: steebchen/kubectl@v2.0.0
+      with: # defaults to latest kubectl binary version
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: set image --record deployment/web container=${{ github.repository }}:${{ github.sha }}
     - name: verify deployment
-      uses: ghostzero/kubectl@v1
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        KUBECTL_VERSION: "v1.28.7+k3s1"
+      uses: steebchen/kubectl@v2.0.0
       with:
-        args: '"rollout status franciscoalves90/devops4devs:${IMAGE_TAG}"' 
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        version: v1.21.0 # specify kubectl binary version explicitly
+        binaries-url: "https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl" # specify the download url explicitly
+        command: rollout status deployment/my-app 
    
