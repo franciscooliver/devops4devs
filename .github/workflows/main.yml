@@ -46,6 +46,9 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+    - name: Update Kubernetes deployment with new image
+      run: |
+        sed -i "s|your-dockerhub-username/your-app:.*|franciscoalves90/devops4devs:${{ github.sha }}|g" k8s/deploy.yaml
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
