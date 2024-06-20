@@ -46,7 +46,7 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: set image --record deployment/web container=franciscoalves90/devops4devs
+        command: set image --record deployment/web
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
