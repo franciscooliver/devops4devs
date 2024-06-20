@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       env:
@@ -49,6 +50,12 @@ jobs:
     - name: Update Kubernetes deployment with new image
       run: |
         sed -i "s|your-dockerhub-username/your-app:.*|franciscoalves90/devops4devs:${{ github.sha }}|g" k8s/deploy.yaml
+    
+    - name: Deploy to Kubernetes
+      uses: steebchen/kubectl@v1.1.0
+      with:
+        args: apply -f k8s/deployment.yaml
+    
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
