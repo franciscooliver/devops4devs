@@ -41,10 +41,10 @@ jobs:
     name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    
-    - name: deploy to cluster
-      uses: steebchen/kubectl@v2.0.0
+    - name: Set up Kubernetes
+      run: |
+        mkdir -p ~/.kube
+        echo "$KUBE_CONFIG_DATA" > ~/.kube/config
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
     - name: Update Kubernetes deployment with new image
