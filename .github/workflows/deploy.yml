@@ -55,10 +55,19 @@ jobs:
     - name: Set up Kubernetes
       run: |
         mkdir -p ~/.kube
-        echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
+        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > ~/.kube/config
         cat ~/.kube/config
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+
+    - name: Verify Kubernetes context
+      run: kubectl config get-contexts
+
+    - name: Verify Kubernetes cluster info
+      run: kubectl cluster-info
+
+    - name: List files in k8s directory for debugging
+      run: ls -al ./k8s
 
     - name: List files in k8s directory
       run: ls -al ./k8s
