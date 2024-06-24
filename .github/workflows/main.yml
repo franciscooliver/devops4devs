@@ -54,7 +54,7 @@ jobs:
     - name: Deploy to Kubernetes
       uses: steebchen/kubectl@v1.1.0
       with:
-        args: apply -f ../../k8s/deploy.yaml
+        args: apply -f ./k8s/deploy.yaml
     
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
