@@ -47,6 +47,10 @@ jobs:
         echo "$KUBE_CONFIG_DATA" > ~/.kube/config
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+
+    - name: List files for debugging
+      run: ls -R
+      
     - name: Update Kubernetes deployment with new image
       run: |
         sed -i "s|franciscoalves90/devops4devs:.*|franciscoalves90/devops4devs:${{ github.sha }}|g" ./k8s/deploy.yaml
