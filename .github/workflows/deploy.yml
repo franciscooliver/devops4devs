@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout do Repositório
+        with:
+          fetch-depth: 0  # Certifique-se de pegar todo o histórico do commit
+
+      - name: List files after checkout
+        run: ls -al
+        working-directory: ${{ github.workspace }}
+        
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -48,8 +55,8 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 
-    - name: List files for debugging
-      run: ls -R
+    - name: List files in k8s directory
+      run: ls -al ./k8s
       
     - name: Update Kubernetes deployment with new image
       run: |
@@ -60,8 +67,8 @@ jobs:
       with:
         args: apply -f ./k8s/deploy.yaml
     
-    - name: verify deployment
-      uses: steebchen/kubectl@v2.0.0
+    - name: Verify Deployment
+      uses: steebchen/kubectl@v1.1.0
       with:
-        args: apply -n poc-namespace -f manifests/
+        args: get pods
    
