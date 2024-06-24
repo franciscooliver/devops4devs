@@ -73,27 +73,25 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-  type: LoadBalancer
 
 ---
-
-# Ingress
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: ingress-web
-#   annotations:
-#     kubernetes.io/ingress.class: traefik
-#     ingress.kubernetes.io/ssl-redirect: "false"
-# spec:
-#   rules:
-#     - host: app01.top-code.dev.br
-#       http:
-#         paths:
-#           - backend:
-#               service:
-#                 name: web
-#                 port:
-#                   number: 80
-#             path: /
-#             pathType: Prefix
+#Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-web
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: app01.top-code.dev.br
+      http:
+        paths:
+          - backend:
+              service:
+                name: web
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
