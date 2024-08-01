@@ -52,37 +52,16 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Set up Kubernetes
-      run: |
-        mkdir -p ~/.kube
-        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > ~/.kube/config
-        cat ~/.kube/config
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-
-    - name: Verify Kubernetes context
-      run: kubectl config get-contexts
-
-    - name: Verify Kubernetes cluster info
-      run: kubectl cluster-info
-
-    - name: List files in k8s directory for debugging
-      run: ls -al ./k8s
-
-    - name: List files in k8s directory
-      run: ls -al ./k8s
-      
-    - name: Update Kubernetes deployment with new image
-      run: |
-        sed -i "s|franciscoalves90/devops4devs:.*|franciscoalves90/devops4devs:${{ github.sha }}|g" ./k8s/deploy.yaml
-    
-    - name: Deploy to Kubernetes
-      uses: steebchen/kubectl@v1.1.0
+    - uses: azure/k8s-set-context@v4
       with:
-        args: apply -f ./k8s/deploy.yaml
-    
-    - name: Verify Deployment
-      uses: steebchen/kubectl@v1.1.0
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+        context: default
+    - uses: Azure/k8s-deploy@v5
       with:
-        args: get pods
+       namespace: 'myapp'
+       manifests: |
+        ./k8s/deploy.yaml
+       images: | 
+         franciscoalves90/devops4devs:${{ github.sha }}
    
