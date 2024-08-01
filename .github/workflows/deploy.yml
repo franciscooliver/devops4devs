@@ -34,6 +34,8 @@ jobs:
           file: ./src/Dockerfile
           platforms: linux/arm64
           push: true
+          build-args: |
+            "POSTGRES_PASSWORD=newspwd"
           tags: | 
             franciscoalves90/devops4devs:${{ github.sha }}
             franciscoalves90/devops4devs:latest
