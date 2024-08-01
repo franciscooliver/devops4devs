@@ -42,7 +42,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: web
@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: franciscoalves90/devops4devs:latest
+          image: franciscoalves90/devops4devs
           resources:
             requests:
               ephemeral-storage: "2Gi"
