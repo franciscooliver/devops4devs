@@ -13,12 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout do Repositório
-        with:
-          fetch-depth: 0  # Certifique-se de pegar todo o histórico do commit
-
-      - name: List files after checkout
-        run: ls -al
-        working-directory: ${{ github.workspace }}
         
       -
         name: Set up QEMU
@@ -56,7 +50,6 @@ jobs:
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
-        context: default
     - uses: Azure/k8s-deploy@v5
       with:
        manifests: |
