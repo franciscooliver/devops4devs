@@ -17,12 +17,24 @@ spec:
           ports:
             - containerPort: 5432
           env:
-          - name: POSTGRES_PASSWORD
-            value: "newspwd"
-          - name: POSTGRES_USER
-            value: "newsuser"
-          - name: POSTGRES_DB
+          - name: DB_DATABASE
             value: "newsdb"
+          - name: DB_USERNAME
+            value: "newsuser"
+          - name: DB_PASSWORD
+            value: "newspwd"
+          - name: DB_HOST
+            value: postgres
+          - name: AWS_ACCESS_KEY
+            value: "AKIA4ZIJJ2KT3XQ4TIJX"
+          - name: AWS_ACCESS_SECRET
+            value: "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"
+          - name: AWS_REGION
+            value: "us-east-1"
+          - name: AWS_S3_BUCKET_NAME
+            value: "newsbucketfiles"
+          - name: STORAGE_TYPE
+            value: "S3"
 
 ---
 apiVersion: v1
