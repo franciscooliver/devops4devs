@@ -32,6 +32,8 @@ jobs:
         with:
           context: ./src
           file: ./src/Dockerfile
+          platforms: |
+            - linux/arm64
           push: true
           tags: | 
             franciscoalves90/devops4devs:${{ github.sha }}
